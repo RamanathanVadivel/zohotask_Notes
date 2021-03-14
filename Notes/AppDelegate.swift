@@ -10,10 +10,17 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    private func getAllNotesFromURL() {
+        NotesService.shared.performRequest(completion: { data in
+            if data != nil {
+                print("Success")
+            }
+        })
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        getAllNotesFromURL()
         // Override point for customization after application launch.
         return true
     }
