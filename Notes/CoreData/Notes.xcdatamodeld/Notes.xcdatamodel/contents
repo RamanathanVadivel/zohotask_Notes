@@ -2,12 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Notes" representedClassName=".Notes" syncable="YES" codeGenerationType="class">
         <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="imagedata" optional="YES" attributeType="Binary"/>
         <attribute name="time" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Notes" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Notes" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

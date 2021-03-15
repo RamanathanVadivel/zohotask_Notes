@@ -14,5 +14,6 @@ struct NotesModel: Codable {
     let time: String?
     let body: String?
     let image: String?
+    let imagedata: Data?
 }
 

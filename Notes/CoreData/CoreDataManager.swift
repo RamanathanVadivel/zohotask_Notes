@@ -5,10 +5,10 @@
 //  Created by Mac HD on 13/03/21.
 //
 
-import Foundation
 import SwiftUI
 import UIKit
 import CoreData
+import ChameleonFramework
 
 
 private func getContext() -> NSManagedObjectContext {
@@ -69,6 +69,8 @@ class CoreDataManager {
                 notes.time = notesModel.time
                 notes.body = notesModel.body
                 notes.image = notesModel.image
+                notes.imagedata = notesModel.imagedata
+                notes.color = UIColor.randomFlat().hexValue()
             }
         }
         saveManagedObjectContext()

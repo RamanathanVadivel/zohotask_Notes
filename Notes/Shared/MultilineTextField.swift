@@ -90,7 +90,7 @@ struct MultilineTextField: View {
     @Binding var defaultHeight: CGFloat
     @State private var showingPlaceholder = false
 
-    init (_ placeholder: String = "", text: Binding<String>, dynamicHeight: Binding<CGFloat>, defaultHeight: Binding<CGFloat>) {
+    init (_ placeholder: String, text: Binding<String>, dynamicHeight: Binding<CGFloat>, defaultHeight: Binding<CGFloat>) {
         self.placeholder = placeholder
         self._text = text
         self._dynamicHeight = dynamicHeight
@@ -100,18 +100,9 @@ struct MultilineTextField: View {
     
     var body: some View {
         UITextViewWrapper(placeholder: self.placeholder, text: self.internalText, calculatedHeight: $dynamicHeight, defaultHeight : $defaultHeight)
+            .background(Text(showingPlaceholder ? placeholder : "").foregroundColor(.red)
+                            .padding(.leading, 4))
             .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
-            .background(placeholderView, alignment: .topLeading)
-    }
-
-    var placeholderView: some View {
-        Group {
-            if showingPlaceholder {
-                Text(placeholder).foregroundColor(.white)
-                    .padding(.leading, 4)
-                    .padding(.top, 8)
-            }
-        }
     }
 }
 
