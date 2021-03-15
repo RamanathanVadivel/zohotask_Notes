@@ -1,5 +1,5 @@
 //
-//  CreateNotes.swift
+//  CreateNotesView.swift
 //  Notes
 //
 //  Created by Mac HD on 13/03/21.
@@ -9,8 +9,9 @@ import SwiftUI
 import Foundation
 
 
-struct CreateNotes: View {
+struct CreateNotesView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var createNotesViewModel : CreateNotesViewModel
     @State private var titleField : String = "Title"
     @State private var bodyField : String = "Type Something..."
     @State private var dynamicTitleHeight : CGFloat = 100
@@ -30,14 +31,6 @@ struct CreateNotes: View {
         }
     }
     
-    func saveInspectionDamageImage(image: UIImage, filePath : URL) {
-        let data = image.jpegData(compressionQuality: 0.05) ?? image.pngData()
-        
-        DispatchQueue.global(qos: .background).async {
-            try? data?.write(to: URL(fileURLWithPath: filePath.path))
-        }
-    }
-    
     var body: some View {
         VStack(alignment:.leading, spacing: 10) {
             MultilineTextField("Title", text: self.$titleField, dynamicHeight: self.$dynamicTitleHeight , defaultHeight: self.$defaultTitleHeight)
@@ -51,7 +44,7 @@ struct CreateNotes: View {
             leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                Image("arrow")
+                Image(K.backButton)
                     .renderingMode(.original)
                     .resizable()
                     .frame(width: 48, height: 48)
@@ -59,7 +52,7 @@ struct CreateNotes: View {
                 Button(action: {
                     isShowImagePicker = true
                 }){
-                    Image(isImageSelected ? "attachImage_green" : "attachImage_black")
+                    Image(isImageSelected ? K.imageAttached : K.attachImage)
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: 48, height: 48)
@@ -69,8 +62,9 @@ struct CreateNotes: View {
                 Button(action: {
                     let pickedImage = self.image?.jpegData(compressionQuality: 0.5)
                     let notes = NotesModel(id: UUID().uuidString, title: titleField, time: "\(Date().timeIntervalSince1970)", body: bodyField, image: nil,imagedata: pickedImage)
-                    CoreDataManager.shared.saveNotes(notesModelArray: [notes])
-                    self.presentationMode.wrappedValue.dismiss()
+                    createNotesViewModel.saveNotes(notes){
+                        self.presentationMode.wrappedValue.dismiss()                        
+                    }
                 }) {
                     Text("Save")
                         .foregroundColor(.white)

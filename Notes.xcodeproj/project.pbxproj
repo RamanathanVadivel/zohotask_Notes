@@ -10,6 +10,8 @@
 		B70BC97925FF4C6100E0E752 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BC97825FF4C6000E0E752 /* RemoteImage.swift */; };
 		B70BC98525FF963D00E0E752 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BC98425FF963D00E0E752 /* Extension.swift */; };
 		B70BC98C25FF974B00E0E752 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BC98B25FF974B00E0E752 /* ImagePicker.swift */; };
+		B70BC99D25FF9F7500E0E752 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BC99C25FF9F7500E0E752 /* ContentViewModel.swift */; };
+		B70BC9A025FF9F9B00E0E752 /* CreateNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BC99F25FF9F9B00E0E752 /* CreateNotesViewModel.swift */; };
 		B744FA8925FCBB3E0044B1A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FA8825FCBB3E0044B1A2 /* AppDelegate.swift */; };
 		B744FA8B25FCBB3E0044B1A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FA8A25FCBB3E0044B1A2 /* SceneDelegate.swift */; };
 		B744FA8D25FCBB3E0044B1A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FA8C25FCBB3E0044B1A2 /* ContentView.swift */; };
@@ -21,8 +23,8 @@
 		B744FAA625FCBEB20044B1A2 /* NotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAA525FCBEB20044B1A2 /* NotesModel.swift */; };
 		B744FAAC25FD1B4D0044B1A2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAAB25FD1B4D0044B1A2 /* CoreDataManager.swift */; };
 		B744FAAF25FD25480044B1A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAAE25FD25480044B1A2 /* Constant.swift */; };
-		B744FAB525FD31EF0044B1A2 /* NotesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAB425FD31EF0044B1A2 /* NotesDetails.swift */; };
-		B744FAB925FD32030044B1A2 /* CreateNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAB825FD32030044B1A2 /* CreateNotes.swift */; };
+		B744FAB525FD31EF0044B1A2 /* NotesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAB425FD31EF0044B1A2 /* NotesDetailsView.swift */; };
+		B744FAB925FD32030044B1A2 /* CreateNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744FAB825FD32030044B1A2 /* CreateNotesView.swift */; };
 		B78A342825FE17FC00933681 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78A342725FE17FC00933681 /* MultilineTextField.swift */; };
 		E290251758A4EAA1C509C444 /* Pods_Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AFF473CE09793CF829D68B /* Pods_Notes.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +35,8 @@
 		B70BC97825FF4C6000E0E752 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		B70BC98425FF963D00E0E752 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		B70BC98B25FF974B00E0E752 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B70BC99C25FF9F7500E0E752 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		B70BC99F25FF9F9B00E0E752 /* CreateNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotesViewModel.swift; sourceTree = "<group>"; };
 		B744FA8525FCBB3E0044B1A2 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B744FA8825FCBB3E0044B1A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B744FA8A25FCBB3E0044B1A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,8 +50,8 @@
 		B744FAA525FCBEB20044B1A2 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
 		B744FAAB25FD1B4D0044B1A2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B744FAAE25FD25480044B1A2 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		B744FAB425FD31EF0044B1A2 /* NotesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetails.swift; sourceTree = "<group>"; };
-		B744FAB825FD32030044B1A2 /* CreateNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotes.swift; sourceTree = "<group>"; };
+		B744FAB425FD31EF0044B1A2 /* NotesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailsView.swift; sourceTree = "<group>"; };
+		B744FAB825FD32030044B1A2 /* CreateNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotesView.swift; sourceTree = "<group>"; };
 		B78A342725FE17FC00933681 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		EBEEEEEE0E4B6EEBE38CF3A0 /* Pods-Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.debug.xcconfig"; path = "Target Support Files/Pods-Notes/Pods-Notes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,10 +88,10 @@
 		B70BC98225FF95CA00E0E752 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B744FAAE25FD25480044B1A2 /* Constant.swift */,
 				B78A342725FE17FC00933681 /* MultilineTextField.swift */,
 				B70BC97825FF4C6000E0E752 /* RemoteImage.swift */,
 				B70BC98B25FF974B00E0E752 /* ImagePicker.swift */,
-				B744FAAE25FD25480044B1A2 /* Constant.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -113,8 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				B744FA8C25FCBB3E0044B1A2 /* ContentView.swift */,
-				B744FAB825FD32030044B1A2 /* CreateNotes.swift */,
-				B744FAB425FD31EF0044B1A2 /* NotesDetails.swift */,
+				B744FAB825FD32030044B1A2 /* CreateNotesView.swift */,
+				B744FAB425FD31EF0044B1A2 /* NotesDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,6 +135,8 @@
 		B70BC99525FF987D00E0E752 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B70BC99C25FF9F7500E0E752 /* ContentViewModel.swift */,
+				B70BC99F25FF9F9B00E0E752 /* CreateNotesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,9 +319,11 @@
 				B744FAAC25FD1B4D0044B1A2 /* CoreDataManager.swift in Sources */,
 				B744FAA625FCBEB20044B1A2 /* NotesModel.swift in Sources */,
 				B70BC98525FF963D00E0E752 /* Extension.swift in Sources */,
-				B744FAB525FD31EF0044B1A2 /* NotesDetails.swift in Sources */,
-				B744FAB925FD32030044B1A2 /* CreateNotes.swift in Sources */,
+				B744FAB525FD31EF0044B1A2 /* NotesDetailsView.swift in Sources */,
+				B744FAB925FD32030044B1A2 /* CreateNotesView.swift in Sources */,
 				B78A342825FE17FC00933681 /* MultilineTextField.swift in Sources */,
+				B70BC9A025FF9F9B00E0E752 /* CreateNotesViewModel.swift in Sources */,
+				B70BC99D25FF9F7500E0E752 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,14 +12,23 @@ import CoreData
 
 // MARK: - Contants
 
+struct K {
+    static let notesURL = "https://raw.githubusercontent.com/RishabhRaghunath/JustATest/master/posts"
+    static let defaultImage = "photo"
+    static let errorImage = "multiply.circle"
+    static let backButton = "arrow"
+    static let attachImage = "attachImage_black"
+    static let imageAttached = "attachImage_green"
+    static let floatingPlusIcon = "floating_plus"
+}
 
 
 // MARK: - Floating Menu
 
 struct FloatingMenu: View {
     var body: some View {
-        NavigationLink(destination: CreateNotes()) {
-            Image("floating_plus")
+        NavigationLink(destination: CreateNotesView(createNotesViewModel: CreateNotesViewModel())) {
+            Image(K.floatingPlusIcon)
                 .renderingMode(.original)
                 .resizable()
                 .frame(width: 100, height: 100)

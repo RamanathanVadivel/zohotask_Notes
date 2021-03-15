@@ -8,11 +8,11 @@
 import Foundation
 
 struct NotesService {
-    let notesURL = "https://raw.githubusercontent.com/RishabhRaghunath/JustATest/master/posts"
+    
     static let shared = NotesService()
     
     func performRequest(completion:@escaping (_ data : [NotesModel]?)->()) {
-        if let url = URL(string: notesURL) {
+        if let url = URL(string: K.notesURL) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
