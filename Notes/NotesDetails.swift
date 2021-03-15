@@ -18,40 +18,45 @@ extension Image {
     }
 }
 
+func formatDate(time: String) -> String {
+    let date = Date(timeIntervalSince1970: Double(time)!)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM dd,yyyy"
+    return dateFormatter.string(from: date)
+}
+
 struct NotesDetails: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var notes : Notes
     
-    func formatDate(time: String) -> String {
-        let date = Date(timeIntervalSince1970: Double(time)!)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd,yyyy"
-        return dateFormatter.string(from: date)
-    }
+
     
     var body: some View {
-        ScrollView {
-            VStack() {
-                if notes.image != nil{
+        GeometryReader { geometry in
+        ScrollView() {
+            VStack(alignment: .leading) {
+                if notes.image != nil {
                     Image("person.fill")
                         .data(url: URL(fileURLWithPath: notes.image!))
                         .renderingMode(.original)
                         .aspectRatio(contentMode: .fit)
-                    }
+                        .frame(width: geometry.size.width)
                 }
-            VStack(alignment: .leading, spacing: CGFloat(14)) {
-                Text(notes.title ?? "")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
-                Text(formatDate(time: notes.time ?? ""))
-                    .font(.body)
-                    .foregroundColor(.gray)
-                Text(notes.body ?? "")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                Spacer()
-            }.padding()
+                VStack(alignment: .leading, spacing: CGFloat(14)) {
+                    Text(notes.title ?? "")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                    Text(formatDate(time: notes.time ?? ""))
+                        .font(.body)
+                        .foregroundColor(.gray)
+                    Text(notes.body ?? "")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Spacer()
+                }.frame(width: geometry.size.width * 0.9, alignment: .center)
+                .padding([.leading,.trailing], geometry.size.width * 0.05)
+            }
         }.navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -60,11 +65,11 @@ struct NotesDetails: View {
                 .resizable()
                 .renderingMode(.original)
                 .aspectRatio(contentMode: .fit)
-                .background(RoundedRectangle(cornerRadius: 6).frame(width: 32, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .cornerRadius(3))
+                .background(RoundedRectangle(cornerRadius: 6).frame(width: 32, height: 32, alignment: .center).cornerRadius(3))
                 .foregroundColor(.gray)
                 .padding()
         })
+        }
     }
 }
 

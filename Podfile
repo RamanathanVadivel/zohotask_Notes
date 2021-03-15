@@ -1,9 +1,9 @@
-
 platform :ios, '13.0'
 
 target 'Notes' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
 
 
 end

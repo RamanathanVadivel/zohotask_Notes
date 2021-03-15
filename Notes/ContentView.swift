@@ -6,10 +6,25 @@
 //
 
 import SwiftUI
+import ChameleonFramework
+
+
+struct FloatingMenu: View {
+    var body: some View {
+        NavigationLink(destination: CreateNotes()) {
+        Image(systemName: "plus.circle.fill")
+            .renderingMode(.original)
+            .resizable()
+            .foregroundColor(.black)
+            .frame(width: 60, height: 60)
+        }
+    }
+}
 
 struct ContentView: View {
     
     @State var notes : [Notes] = []
+    @State var count = 0
     
     private func fetchNotesList() {
         self.notes = CoreDataManager.shared.getAllNotes() ?? notes
@@ -17,30 +32,60 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    ForEach(notes, id:\.id) { note in
-                        NavigationLink(destination: NotesDetails(notes: note)) {
-                            Text(note.title ?? "")
+            GeometryReader { geometry in
+            VStack{
+                ZStack {
+                    VStack {
+//                            ForEach(notes, id:\.id) { note in
+//                                if note.image == nil {
+//                                    VStack(alignment: .leading, spacing: 10){
+//                                        Text(note.title ?? "")
+//                                            .font(.headline)
+//                                        Text(formatDate(time: note.time ?? ""))
+//                                            .font(.body)
+//                                            .foregroundColor(.gray)
+//                                    }
+//                                    .background(RoundedRectangle(cornerRadius: 6).frame(width: geometry.size.width * 0.4, alignment: .center).cornerRadius(3))
+//                                } else {
+//                                    VStack(alignment: .leading, spacing: 10){
+//                                        Text(note.title ?? "")
+//                                            .font(.headline)
+//                                        Text(formatDate(time: note.time ?? ""))
+//                                            .font(.body)
+//                                            .foregroundColor(.gray)
+//                                    }
+//                                    .background(RoundedRectangle(cornerRadius: 6).frame(width: geometry.size.width * 0.8, alignment: .center).cornerRadius(3))
+//                                }
+//                                NavigationLink(destination: NotesDetails(notes: note)) {
+//                                    EmptyView()
+//                                }.opacity(0.0)
+//                            }
+                        
+                        List {
+                            ForEach(notes, id:\.id) { note in
+                                NavigationLink(destination: NotesDetails(notes: note)) {
+                                    Text(note.title ?? "")
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            FloatingMenu()
+                                .padding()
                         }
                     }
                 }
-                Spacer()
-            }.onAppear(perform: fetchNotesList)
+            }
+            .onAppear(perform: fetchNotesList)
             .navigationBarItems(
                 leading: Text("Notes")
                     .font(.title)
-                    .bold(),
-                trailing: NavigationLink(destination: CreateNotes()) {
-                    Image(systemName: "plus")
-                    .resizable()
-                    .renderingMode(.original)
-                    .aspectRatio(contentMode: .fit)
-                    .background(RoundedRectangle(cornerRadius: 6).frame(width: 32, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                    .cornerRadius(3))
-                    .foregroundColor(.gray)
-                    .padding()
-                })
+                    .bold())
+            }
         }
     }
 }

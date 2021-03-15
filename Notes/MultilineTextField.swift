@@ -21,7 +21,7 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         textField.delegate = context.coordinator
         textField.keyboardType = .default
         textField.isEditable = true
-        textField.font = UIFont.preferredFont(forTextStyle: .body)
+        textField.font = UIFont.preferredFont(forTextStyle: placeholder == "Title" ? .largeTitle : .body)
         textField.isSelectable = true
         textField.isUserInteractionEnabled = true
         textField.isScrollEnabled = false
@@ -55,13 +55,11 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         var text: Binding<String>
         var calculatedHeight: Binding<CGFloat>
         var defaultHeight : Binding<CGFloat>
-        var onDone: (() -> Void)?
 
         init(text: Binding<String>, height: Binding<CGFloat>, defaultHeight1: Binding<CGFloat>, onDone: (() -> Void)? = nil) {
             self.text = text
             self.calculatedHeight = height
             self.defaultHeight = defaultHeight1
-            self.onDone = onDone
         }
 
         func textViewDidChange(_ uiView: UITextView) {
@@ -70,11 +68,6 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         }
 
         func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            if let onDone = self.onDone, text == "\n" {
-                textView.resignFirstResponder()
-                onDone()
-                return false
-            }
             return true
         }
     }
@@ -106,7 +99,7 @@ struct MultilineTextField: View {
     }
     
     var body: some View {
-        UITextViewWrapper(text: self.internalText, calculatedHeight: $dynamicHeight, defaultHeight : $defaultHeight)
+        UITextViewWrapper(placeholder: self.placeholder, text: self.internalText, calculatedHeight: $dynamicHeight, defaultHeight : $defaultHeight)
             .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
             .background(placeholderView, alignment: .topLeading)
     }
@@ -114,7 +107,7 @@ struct MultilineTextField: View {
     var placeholderView: some View {
         Group {
             if showingPlaceholder {
-                Text(placeholder).foregroundColor(.gray)
+                Text(placeholder).foregroundColor(.white)
                     .padding(.leading, 4)
                     .padding(.top, 8)
             }
