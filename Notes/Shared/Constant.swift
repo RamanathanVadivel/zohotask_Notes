@@ -20,6 +20,16 @@ struct K {
     static let attachImage = "attachImage_black"
     static let imageAttached = "attachImage_green"
     static let floatingPlusIcon = "floating_plus"
+    static let appTitle_Notes = "Notes"
+    static let defaultBackgroundColor = "#EDA87E"
+    static let titlePlaceholder = "Title"
+    static let bodyPlaceholder = "Type Something..."
+    static let saveButton = "Save"
+    static let saveButtonBackgroundColor = "#3B3B3B"
+    static let currentTime = "\(Date().timeIntervalSince1970)"
+    static let defaultTitle = "*** Error to load Title of Notes"
+    static let defaultBody = "*** Error to load Body of Notes"
+    static let pleaseWait = "Please wait..."
 }
 
 

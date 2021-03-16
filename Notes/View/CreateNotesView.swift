@@ -14,8 +14,8 @@ struct CreateNotesView: View {
     @ObservedObject var createNotesViewModel : CreateNotesViewModel
     @State private var titleField : String = "Title"
     @State private var bodyField : String = "Type Something..."
-    @State private var dynamicTitleHeight : CGFloat = 100
-    @State private var defaultTitleHeight : CGFloat = 100
+    @State private var dynamicTitleHeight : CGFloat = 50
+    @State private var defaultTitleHeight : CGFloat = 50
     @State private var dynamicBodyHeight : CGFloat = 35
     @State private var defaultBodyHeight : CGFloat = 35
     @State private var isImageSelected : Bool = false
@@ -23,7 +23,7 @@ struct CreateNotesView: View {
     @State var image : UIImage? = nil
     
     
-    func imagePickerDismissAction() {
+    private func imagePickerDismissAction() {
         if (self.image != nil) {
             isImageSelected = true
         } else {
@@ -33,8 +33,8 @@ struct CreateNotesView: View {
     
     var body: some View {
         VStack(alignment:.leading, spacing: 10) {
-            MultilineTextField("Title", text: self.$titleField, dynamicHeight: self.$dynamicTitleHeight , defaultHeight: self.$defaultTitleHeight)
-            MultilineTextField("Type Something...", text: self.$bodyField, dynamicHeight: self.$dynamicBodyHeight , defaultHeight: self.$defaultBodyHeight)
+            MultilineTextField(K.titlePlaceholder, text: self.$titleField, dynamicHeight: self.$dynamicTitleHeight , defaultHeight: self.$defaultTitleHeight)
+            MultilineTextField(K.bodyPlaceholder, text: self.$bodyField, dynamicHeight: self.$dynamicBodyHeight , defaultHeight: self.$defaultBodyHeight)
             Spacer()
         }
         .sheet(isPresented: self.$isShowImagePicker, onDismiss: self.imagePickerDismissAction) {
@@ -61,16 +61,16 @@ struct CreateNotesView: View {
                 Spacer()
                 Button(action: {
                     let pickedImage = self.image?.jpegData(compressionQuality: 0.5)
-                    let notes = NotesModel(id: UUID().uuidString, title: titleField, time: "\(Date().timeIntervalSince1970)", body: bodyField, image: nil,imagedata: pickedImage)
-                    createNotesViewModel.saveNotes(notes){
+                    let notes = NotesModel(id: UUID().uuidString, title: titleField, time: K.currentTime, body: bodyField, image: nil,imagedata: pickedImage)
+                    createNotesViewModel.saveNotes(notes) {
                         self.presentationMode.wrappedValue.dismiss()                        
                     }
                 }) {
-                    Text("Save")
+                    Text(K.saveButton)
                         .foregroundColor(.white)
                         .frame(width: 72)
                         .background(RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.init(hex: "#3B3B3B"))
+                                        .foregroundColor(Color.init(hex: K.saveButtonBackgroundColor))
                                         .frame(width: 80, height: 48, alignment: .center)
                                         .cornerRadius(15)
                         )

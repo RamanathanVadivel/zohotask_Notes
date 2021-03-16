@@ -31,18 +31,19 @@ class CoreDataManager {
         self.moc = moc
     }
     
-    func getAllNotes() -> [Notes]? {
+    func getAllNotes() -> [Notes] {
+        var allNotes = [Notes]()
         let notesRequest : NSFetchRequest<Notes> = Notes.fetchRequest()
-        notesRequest.returnsObjectsAsFaults = false
+        notesRequest.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
         do
         {
             let notesRequest = try self.moc.fetch(notesRequest)
             print("*** getAllNotesInDB \(notesRequest)")
-            return notesRequest
+            allNotes = notesRequest
         } catch let error {
             print("*** getAllNotesInDB \(error)")
         }
-        return nil
+        return allNotes
     }
     
     func getNotesById(_ id : String) -> Notes? {

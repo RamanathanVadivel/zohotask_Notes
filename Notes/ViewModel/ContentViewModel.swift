@@ -19,8 +19,19 @@ class ContentViewModel : ObservableObject {
         }
     }
     
-   func fetchNotesList() {
-        self.notes = CoreDataManager.shared.getAllNotes() ?? notes
+    @Published var viewUpdater = false
+    
+    func fetchNotesList() {
+        self.notes = CoreDataManager.shared.getAllNotes()
+    }
+    
+    func getAllNotesFromURL(completion:@escaping () -> ()) {
+        NotesService.shared.performRequest(completion: { data in
+            if data != nil {
+                print("Success")
+            }
+            completion()
+        })
     }
     
 }

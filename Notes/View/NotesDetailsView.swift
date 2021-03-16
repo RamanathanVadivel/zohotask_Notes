@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct NotesDetailsView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -14,6 +15,7 @@ struct NotesDetailsView: View {
     var image: some View {
         if let nsData = notes.imagedata, let uiImage = UIImage(data: nsData as Data) {
             return AnyView(Image(uiImage: uiImage)
+                            .renderingMode(.original)
                             .resizable()
                             .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth/2)
             )
@@ -21,27 +23,35 @@ struct NotesDetailsView: View {
         return AnyView(EmptyView())
     }
     
-    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 if notes.image != nil {
-                    RemoteImage(url: notes.image!)
-                        .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth/2)
+                    NavigationLink(destination: OpenImageView(urlString: notes.image!)) {
+                        RemoteImage(url: notes.image!)
+                    }
+                    .animation(Animation.easeInOut(duration: 3.0))
+                    .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth/2)
                 } else if notes.imagedata != nil {
-                    image
+                    NavigationLink(destination: OpenImageView(imageData: notes.imagedata)) {
+                        image
+                    }
+                    .animation(Animation.easeInOut(duration: 3.0))
                 }
-                VStack(alignment: .leading, spacing: CGFloat(14)) {
-                    Text(notes.title ?? "")
-                        .font(.title)
+                VStack(alignment: .leading, spacing: CGFloat(20)) {
+                    Text(notes.title ?? K.defaultTitle)
+                        .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
-                    Text(formatDate(time: notes.time ?? ""))
-                        .font(.body)
+                        .lineSpacing(2)
+                    Text(formatDate(time: notes.time ?? K.currentTime))
+                        .font(.headline)
                         .foregroundColor(.gray)
-                    Text(notes.body ?? "")
+                    Text(notes.body ?? K.defaultBody)
                         .font(.headline)
                         .foregroundColor(.white)
+                        .lineSpacing(8)
+                    
                     Spacer()
                 }.frame(width: UIScreen.screenWidth * 0.9, alignment: .leading)
                 .padding([.leading,.trailing], UIScreen.screenWidth * 0.05)
