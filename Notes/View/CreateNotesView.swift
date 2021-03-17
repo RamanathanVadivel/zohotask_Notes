@@ -12,8 +12,8 @@ import Foundation
 struct CreateNotesView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var createNotesViewModel : CreateNotesViewModel
-    @State private var titleField : String = "Title"
-    @State private var bodyField : String = "Type Something..."
+    @State private var titleField : String = ""
+    @State private var bodyField : String = ""
     @State private var dynamicTitleHeight : CGFloat = 50
     @State private var defaultTitleHeight : CGFloat = 50
     @State private var dynamicBodyHeight : CGFloat = 35
@@ -60,7 +60,7 @@ struct CreateNotesView: View {
                 }
                 Spacer()
                 Button(action: {
-                    let pickedImage = self.image?.jpegData(compressionQuality: 0.5)
+                    let pickedImage = self.image?.jpegData(compressionQuality: 0.3)
                     let notes = NotesModel(id: UUID().uuidString, title: titleField, time: K.currentTime, body: bodyField, image: nil,imagedata: pickedImage)
                     createNotesViewModel.saveNotes(notes) {
                         self.presentationMode.wrappedValue.dismiss()                        

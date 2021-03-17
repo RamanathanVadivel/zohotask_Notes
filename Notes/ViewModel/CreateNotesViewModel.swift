@@ -12,7 +12,9 @@ import Combine
 class CreateNotesViewModel : ObservableObject {
     
     func saveNotes(_ notes: NotesModel,completion:()->()) {
-        CoreDataManager.shared.saveNotes(notesModelArray: [notes])
+        DispatchQueue.main.async {
+            CoreDataManager.shared.saveNotes(notesModelArray: [notes])
+        }
         completion()
     }
     

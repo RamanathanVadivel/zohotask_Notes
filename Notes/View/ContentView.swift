@@ -20,31 +20,23 @@ struct ContentView: View {
                 VStack(alignment: .leading){
                     Text(contentViewModel.notes[index].title ?? K.defaultTitle)
                         .font(.title3)
-                        .foregroundColor(Color.black)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundColor(Color(ContrastColorOf(UIColor.init(hexString: contentViewModel.notes[index].color!)!, returnFlat: true)))
                         .padding([.horizontal,.top])
                         .frame(width: UIScreen.screenWidth * 0.44, alignment: .leading)
                     Spacer()
                     Text(formatDate(time: contentViewModel.notes[index].time ?? K.currentTime))
                         .font(.body)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(ContrastColorOf(UIColor.init(hexString: contentViewModel.notes[index].color!)!, returnFlat: true))).opacity(0.5)
                         .padding(.top, 10)
                         .padding([.horizontal,.bottom])
                         .frame(width: UIScreen.screenWidth * 0.4, alignment: .trailing)
-                }.frame(width: UIScreen.screenWidth * 0.44, height:getHeight(index,isleftview), alignment: .leading)
+                }.frame(width: UIScreen.screenWidth * 0.44, alignment: .leading)
                 .background(RoundedRectangle(cornerRadius: 6)
                                 .foregroundColor(Color.init(hex: contentViewModel.notes[index].color ?? K.defaultBackgroundColor))
                             
                 )
             }
-        }
-    }
-    
-    fileprivate func getHeight(_ index: Int, _ view: Bool) -> CGFloat? {
-        currentIndex = index
-        if view {
-            return (index % 2 == 0 ? 180 : 260)
-        } else {
-            return (index % 2 != 0 ? 180 : 260)
         }
     }
     
@@ -72,15 +64,8 @@ struct ContentView: View {
                                 .padding()
                         }
                     }
-                    LoadingView(isShowLoader:$isShowLoader)
-                }.onAppear(perform: contentViewModel.fetchNotesList)
-            }.onAppear(){
-                isShowLoader = true
-                contentViewModel.getAllNotesFromURL{
-                    isShowLoader = false
-                    contentViewModel.fetchNotesList()
                 }
-            }
+            }.onAppear(perform: contentViewModel.fetchNotesList)
             .navigationBarItems(leading: Text(K.appTitle_Notes).font(.largeTitle).bold())
         }
     }

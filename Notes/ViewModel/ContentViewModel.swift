@@ -22,15 +22,17 @@ class ContentViewModel : ObservableObject {
     @Published var viewUpdater = false
     
     func fetchNotesList() {
-        self.notes = CoreDataManager.shared.getAllNotes()
+        DispatchQueue.main.async {
+            self.notes = CoreDataManager.shared.getAllNotes()
+        }
     }
     
-    func getAllNotesFromURL(completion:@escaping () -> ()) {
+    func getAllNotesFromURL() {
         NotesService.shared.performRequest(completion: { data in
             if data != nil {
                 print("Success")
+                self.fetchNotesList()
             }
-            completion()
         })
     }
     
