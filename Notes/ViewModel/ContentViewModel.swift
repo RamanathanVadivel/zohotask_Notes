@@ -30,7 +30,9 @@ class ContentViewModel : ObservableObject {
     func getAllNotesFromURL() {
         NotesService.shared.performRequest(completion: { data in
             if data != nil {
+                #if DEBUG
                 print("Success")
+                #endif
                 self.fetchNotesList()
             }
         })

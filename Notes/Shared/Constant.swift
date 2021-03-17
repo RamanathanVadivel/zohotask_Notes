@@ -7,8 +7,6 @@
 
 import Foundation
 import SwiftUI
-import UIKit
-import CoreData
 
 // MARK: - Contants
 
@@ -21,6 +19,8 @@ struct K {
     static let imageAttached = "attachImage_green"
     static let floatingPlusIcon = "floating_plus"
     static let appTitle_Notes = "Notes"
+    static let refreshButton = "Click Refresh"
+    static let noNotesAvailable = "No Notes Added yet... "
     static let defaultBackgroundColor = "#EDA87E"
     static let titlePlaceholder = "Title"
     static let bodyPlaceholder = "Type Something..."

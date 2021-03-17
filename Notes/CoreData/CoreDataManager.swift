@@ -38,10 +38,14 @@ class CoreDataManager {
         do
         {
             let notesRequest = try self.moc.fetch(notesRequest)
+            #if DEBUG
             print("*** getAllNotesInDB \(notesRequest)")
+            #endif
             allNotes = notesRequest
         } catch let error {
+            #if DEBUG
             print("*** getAllNotesInDB \(error)")
+            #endif
         }
         return allNotes
     }
@@ -53,10 +57,14 @@ class CoreDataManager {
         do
         {
             let notesRequestByID = try self.moc.fetch(notesDetailsRequest)
+            #if DEBUG
             print("*** getNotesByIdInDB \(notesRequestByID)")
+            #endif
             return notesRequestByID.first
         } catch let error {
+            #if DEBUG
             print("*** getNotesByIdInDB \(error)")
+            #endif
         }
         return nil
     }
@@ -75,7 +83,9 @@ class CoreDataManager {
             }
         }
         saveManagedObjectContext()
+        #if DEBUG
         print("*** Notes Saved in DB")
+        #endif
     }
     
     func saveManagedObjectContext(completion:(()->())? = nil) {

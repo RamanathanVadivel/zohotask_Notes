@@ -34,7 +34,9 @@ struct NotesService {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode([NotesModel].self, from: notesData)
+            #if DEBUG
             print("*** Notes json Response \(decodedData)")
+            #endif
             return decodedData
         } catch {
             return nil

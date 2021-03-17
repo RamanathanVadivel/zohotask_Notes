@@ -14,8 +14,8 @@ struct ContentView: View {
     @ObservedObject var contentViewModel : ContentViewModel
     @State var isShowLoader : Bool = false
     
-    fileprivate func MainView(isleftview: Bool) -> some View {
-        return ForEach(isleftview ? 0..<contentViewModel.notes.count/2 : contentViewModel.notes.count/2..<contentViewModel.notes.count, id:\.self) { index in
+    private func MainView(isFirstColumn: Bool) -> some View {
+        return ForEach(isFirstColumn ? 0..<contentViewModel.notes.count/2 : contentViewModel.notes.count/2..<contentViewModel.notes.count, id:\.self) { index in
             NavigationLink(destination: NotesDetailsView(notes: contentViewModel.notes[index])) {
                 VStack(alignment: .leading){
                     Text(contentViewModel.notes[index].title ?? K.defaultTitle)
@@ -34,7 +34,6 @@ struct ContentView: View {
                 }.frame(width: UIScreen.screenWidth * 0.44, alignment: .leading)
                 .background(RoundedRectangle(cornerRadius: 6)
                                 .foregroundColor(Color.init(hex: contentViewModel.notes[index].color ?? K.defaultBackgroundColor))
-                            
                 )
             }
         }
@@ -44,17 +43,33 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 ZStack {
-                    ScrollView(showsIndicators: false) {
-                        HStack(spacing : 16) {
-                            VStack{
-                                MainView(isleftview: true)
-                                Spacer()
-                            }
-                            VStack{
-                                MainView(isleftview: false)
-                                Spacer()
-                            }
-                        }.frame(width: UIScreen.screenWidth * 0.98, alignment: .center)
+                    if contentViewModel.notes.count != 0 {
+                        ScrollView(showsIndicators: false) {
+                            HStack(spacing : 16) {
+                                VStack{
+                                    MainView(isFirstColumn: true)
+                                    Spacer()
+                                }
+                                VStack{
+                                    MainView(isFirstColumn: false)
+                                    Spacer()
+                                }
+                            }.frame(width: UIScreen.screenWidth * 0.98, alignment: .center)
+                        }
+                    } else {
+                        VStack(spacing: 30){
+                            Text(K.noNotesAvailable).font(.title).foregroundColor(.white)
+                            Text(K.refreshButton).font(.headline).bold().foregroundColor(.white)
+                                .frame(width: 150, height: 40)
+                                .background(RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(Color.init(hex: K.saveButtonBackgroundColor))
+                                                .cornerRadius(15)
+                                )
+                                .foregroundColor(.gray)
+                                .onTapGesture {
+                                    contentViewModel.fetchNotesList()
+                                }
+                        }
                     }
                     VStack{
                         Spacer()
