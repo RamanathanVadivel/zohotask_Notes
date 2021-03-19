@@ -19,8 +19,6 @@ class ContentViewModel : ObservableObject {
         }
     }
     
-    @Published var viewUpdater = false
-    
     func fetchNotesList() {
         DispatchQueue.main.async {
             self.notes = CoreDataManager.shared.getAllNotes()

@@ -33,7 +33,7 @@ struct ContentView: View {
                         .frame(width: UIScreen.screenWidth * 0.4, alignment: .trailing)
                 }.frame(width: UIScreen.screenWidth * 0.44, alignment: .leading)
                 .background(RoundedRectangle(cornerRadius: 6)
-                                .foregroundColor(Color.init(hex: contentViewModel.notes[index].color ?? K.defaultBackgroundColor))
+                                .foregroundColor(Color(UIColor.init(hexString: contentViewModel.notes[index].color ?? K.defaultBackgroundColor) ?? UIColor.randomFlat()))
                 )
             }
         }
@@ -62,7 +62,7 @@ struct ContentView: View {
                             Text(K.refreshButton).font(.headline).bold().foregroundColor(.white)
                                 .frame(width: 150, height: 40)
                                 .background(RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color.init(hex: K.saveButtonBackgroundColor))
+                                                .foregroundColor(Color(UIColor.init(hexString: K.saveButtonBackgroundColor) ?? UIColor.black))
                                                 .cornerRadius(15)
                                 )
                                 .foregroundColor(.gray)

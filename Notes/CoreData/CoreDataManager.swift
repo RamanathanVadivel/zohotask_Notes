@@ -34,7 +34,7 @@ class CoreDataManager {
     func getAllNotes() -> [Notes] {
         var allNotes = [Notes]()
         let notesRequest : NSFetchRequest<Notes> = Notes.fetchRequest()
-        notesRequest.sortDescriptors = [NSSortDescriptor(key: "time", ascending: true)]
+        notesRequest.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         do
         {
             let notesRequest = try self.moc.fetch(notesRequest)

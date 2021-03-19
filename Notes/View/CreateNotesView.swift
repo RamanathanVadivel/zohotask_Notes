@@ -16,8 +16,8 @@ struct CreateNotesView: View {
     @State private var bodyField : String = ""
     @State private var dynamicTitleHeight : CGFloat = 50
     @State private var defaultTitleHeight : CGFloat = 50
-    @State private var dynamicBodyHeight : CGFloat = 35
-    @State private var defaultBodyHeight : CGFloat = 35
+    @State private var dynamicBodyHeight : CGFloat = 200
+    @State private var defaultBodyHeight : CGFloat = 200
     @State private var isImageSelected : Bool = false
     @State private var isShowImagePicker : Bool = false
     @State var image : UIImage? = nil
@@ -70,7 +70,7 @@ struct CreateNotesView: View {
                         .foregroundColor(.white)
                         .frame(width: 72)
                         .background(RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(Color.init(hex: K.saveButtonBackgroundColor))
+                                        .foregroundColor(Color(UIColor.init(hexString: K.saveButtonBackgroundColor) ?? UIColor.black))
                                         .frame(width: 80, height: 48, alignment: .center)
                                         .cornerRadius(15)
                         )
